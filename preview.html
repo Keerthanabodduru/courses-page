@@ -3,62 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn C Programming - Free for Students</title>
+<title>React.js Interactive Introduction</title>
 
 <style>
-body{
+*{
     margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f8fb;
-    color:#222;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#333;
 }
 
 header{
-    background:linear-gradient(90deg,#0066cc,#00bcd4);
+    background:linear-gradient(135deg,#61dafb,#21759b);
     color:white;
     text-align:center;
-    padding:30px;
+    padding:40px 20px;
+}
+
+header h1{
+    font-size:2.8rem;
+}
+
+header p{
+    margin-top:10px;
+    font-size:1.1rem;
 }
 
 nav{
+    background:#fff;
+    padding:15px;
     display:flex;
     justify-content:center;
     gap:20px;
-    background:#0d3b66;
-    padding:12px;
-    flex-wrap:wrap;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    position:sticky;
+    top:0;
 }
 
 nav a{
-    color:white;
     text-decoration:none;
+    color:#21759b;
     font-weight:bold;
 }
 
-section{
+.container{
     max-width:1000px;
     margin:auto;
-    padding:25px;
+    padding:30px;
 }
 
 .card{
     background:white;
-    padding:20px;
-    margin:20px 0;
+    padding:25px;
+    margin-bottom:25px;
     border-radius:12px;
-    box-shadow:0px 3px 10px rgba(0,0,0,.1);
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
-pre{
-    background:#272822;
-    color:#00ff7f;
+h2{
+    color:#21759b;
+    margin-bottom:15px;
+}
+
+.code{
+    background:#282c34;
+    color:#61dafb;
     padding:15px;
     border-radius:8px;
     overflow:auto;
+    margin-top:10px;
+}
+
+.tabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.tab-btn{
+    padding:10px 15px;
+    border:none;
+    background:#ddd;
+    cursor:pointer;
+    border-radius:6px;
+}
+
+.tab-btn.active{
+    background:#21759b;
+    color:white;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+.quiz-option{
+    display:block;
+    margin:10px 0;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    cursor:pointer;
 }
 
 button{
-    background:#0077ff;
+    background:#21759b;
     color:white;
     border:none;
     padding:10px 18px;
@@ -66,228 +124,180 @@ button{
     cursor:pointer;
 }
 
-button:hover{
-    background:#005ccc;
+#result{
+    margin-top:15px;
+    font-weight:bold;
 }
 
 footer{
     text-align:center;
-    background:#0d3b66;
+    padding:20px;
+    background:#21759b;
     color:white;
-    padding:15px;
-    margin-top:30px;
-}
-
-.dark{
-    background:#111;
-    color:#eee;
-}
-
-.dark .card{
-    background:#222;
-    color:white;
-}
-
-.dark pre{
-    background:#000;
-}
-
-.quiz-result{
-    margin-top:10px;
-    font-weight:bold;
 }
 </style>
 </head>
-
 <body>
 
 <header>
-    <h1>🚀 Learn C Programming</h1>
-    <p>Free Learning Platform for Students</p>
-    <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+    <h1>Durga's blog</h1>
+    <h1>⚛ React.js Introduction</h1>
+    <p>Learn the fundamentals of React through interactive examples.</p>
 </header>
 
 <nav>
     <a href="#intro">Introduction</a>
-    <a href="#syntax">Syntax</a>
-    <a href="#variables">Variables</a>
-    <a href="#loops">Loops</a>
+    <a href="#features">Features</a>
+    <a href="#examples">Examples</a>
     <a href="#quiz">Quiz</a>
 </nav>
 
-<section id="intro">
+<div class="container">
 
-<div class="card">
-<h2>📘 What is C?</h2>
+    <!-- Introduction -->
+    <section id="intro" class="card">
+        <h2>What is React?</h2>
+        <p>
+            React.js is a popular JavaScript library used to build user interfaces,
+            especially single-page applications (SPAs). It was developed by Facebook
+            and allows developers to create reusable UI components.
+        </p>
 
-<p>
-C is one of the world's most influential programming languages.
-It is fast, powerful, portable, and forms the foundation for many
-modern languages such as C++, Java, and Python implementations.
-</p>
+        <button onclick="showFact()">Show Fun Fact</button>
+        <p id="fact" style="margin-top:15px;"></p>
+    </section>
 
-<p>
-Learning C helps students understand memory, algorithms,
-and problem-solving at a deeper level.
-</p>
+    <!-- Features -->
+    <section id="features" class="card">
+        <h2>Key Features of React</h2>
 
-</div>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event,'components')">Components</button>
+            <button class="tab-btn" onclick="openTab(event,'jsx')">JSX</button>
+            <button class="tab-btn" onclick="openTab(event,'virtualdom')">Virtual DOM</button>
+        </div>
 
-<div class="card" id="syntax">
-<h2>💻 Your First C Program</h2>
+        <div id="components" class="tab-content active">
+            <p>
+                Components are reusable building blocks that make UI development easier.
+            </p>
+        </div>
 
+        <div id="jsx" class="tab-content">
+            <p>
+                JSX allows developers to write HTML-like syntax inside JavaScript.
+            </p>
+        </div>
+
+        <div id="virtualdom" class="tab-content">
+            <p>
+                React uses a Virtual DOM to efficiently update the user interface.
+            </p>
+        </div>
+    </section>
+
+    <!-- Examples -->
+    <section id="examples" class="card">
+        <h2>React Example</h2>
+
+        <p>A simple React component:</p>
+
+        <div class="code">
 <pre>
-#include &lt;stdio.h&gt;
-
-int main() {
-
-    printf("Hello, World!");
-
-    return 0;
+function Welcome() {
+  return &lt;h1&gt;Hello React!&lt;/h1&gt;;
 }
+
+export default Welcome;
 </pre>
+        </div>
 
-<p>
-This program prints <b>Hello, World!</b> on the screen.
-</p>
+        <br>
 
-</div>
+        <button onclick="toggleExample()">Show Explanation</button>
 
-<div class="card" id="variables">
-<h2>🔢 Variables</h2>
+        <p id="exampleText" style="display:none; margin-top:15px;">
+            This component returns an &lt;h1&gt; element displaying
+            "Hello React!". Components help organize UI into reusable pieces.
+        </p>
+    </section>
 
-<table border="1" cellpadding="8" cellspacing="0">
-<tr>
-<th>Type</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
+    <!-- Quiz -->
+    <section id="quiz" class="card">
+        <h2>Quick Quiz</h2>
 
-<tr>
-<td>int</td>
-<td>Integer numbers</td>
-<td>25</td>
-</tr>
+        <p>Which company created React?</p>
 
-<tr>
-<td>float</td>
-<td>Decimal values</td>
-<td>3.14</td>
-</tr>
+        <label class="quiz-option">
+            <input type="radio" name="answer" value="Google"> Google
+        </label>
 
-<tr>
-<td>char</td>
-<td>Single character</td>
-<td>'A'</td>
-</tr>
+        <label class="quiz-option">
+            <input type="radio" name="answer" value="Facebook"> Facebook
+        </label>
 
-<tr>
-<td>double</td>
-<td>High precision decimal</td>
-<td>15.6789</td>
-</tr>
+        <label class="quiz-option">
+            <input type="radio" name="answer" value="Microsoft"> Microsoft
+        </label>
 
-</table>
+        <button onclick="checkAnswer()">Submit</button>
+
+        <div id="result"></div>
+    </section>
 
 </div>
-
-<div class="card" id="loops">
-<h2>🔁 Loops in C</h2>
-
-<p>Loops repeat a block of code multiple times.</p>
-
-<pre>
-for(int i=1;i&lt;=5;i++)
-{
-    printf("%d\n", i);
-}
-</pre>
-
-<p>Output:</p>
-
-<pre>
-1
-2
-3
-4
-5
-</pre>
-
-</div>
-
-<div class="card">
-<h2>💡 Why Learn C?</h2>
-
-<ul>
-<li>✔ Strong programming foundation</li>
-<li>✔ Used in embedded systems</li>
-<li>✔ Powers operating systems</li>
-<li>✔ Excellent for coding interviews</li>
-<li>✔ Improves logical thinking</li>
-</ul>
-
-</div>
-
-<div class="card" id="quiz">
-
-<h2>🧩 Quick Quiz</h2>
-
-<p>Which function is the entry point of a C program?</p>
-
-<input type="radio" name="q1" value="printf"> printf()<br>
-<input type="radio" name="q1" value="main"> main()<br>
-<input type="radio" name="q1" value="scanf"> scanf()<br><br>
-
-<button onclick="checkQuiz()">Check Answer</button>
-
-<div class="quiz-result" id="result"></div>
-
-</div>
-
-</section>
 
 <footer>
-Made with ❤️ to help students learn C programming for free.
+    React.js Interactive Learning Page
 </footer>
 
 <script>
-
-function toggleTheme(){
-
-    document.body.classList.toggle("dark");
-
+function showFact(){
+    document.getElementById("fact").innerHTML =
+        "React was first released in 2013 and is maintained by Meta (formerly Facebook).";
 }
 
-function checkQuiz(){
+function openTab(evt, tabName){
 
-    let options=document.getElementsByName("q1");
-    let answer="";
+    const contents = document.querySelectorAll(".tab-content");
+    contents.forEach(content => content.classList.remove("active"));
 
-    for(let i=0;i<options.length;i++){
+    const buttons = document.querySelectorAll(".tab-btn");
+    buttons.forEach(btn => btn.classList.remove("active"));
 
-        if(options[i].checked){
-
-            answer=options[i].value;
-
-        }
-
-    }
-
-    if(answer==="main"){
-
-        document.getElementById("result").innerHTML=
-        "✅ Correct! main() is the entry point of a C program.";
-
-    }
-    else{
-
-        document.getElementById("result").innerHTML=
-        "❌ Try again! The correct answer is main().";
-
-    }
-
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
 }
 
+function toggleExample(){
+    const text = document.getElementById("exampleText");
+
+    if(text.style.display === "none"){
+        text.style.display = "block";
+    }else{
+        text.style.display = "none";
+    }
+}
+
+function checkAnswer(){
+
+    const answer = document.querySelector('input[name="answer"]:checked');
+    const result = document.getElementById("result");
+
+    if(!answer){
+        result.innerHTML = "Please select an answer.";
+        result.style.color = "orange";
+        return;
+    }
+
+    if(answer.value === "Facebook"){
+        result.innerHTML = "✅ Correct! React was created by Facebook.";
+        result.style.color = "green";
+    }else{
+        result.innerHTML = "❌ Incorrect. The correct answer is Facebook.";
+        result.style.color = "red";
+    }
+}
 </script>
 
 </body>
